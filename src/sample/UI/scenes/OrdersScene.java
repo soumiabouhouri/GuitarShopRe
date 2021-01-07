@@ -3,6 +3,8 @@ package sample.UI.scenes;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -27,8 +29,9 @@ public class OrdersScene {
     private Scene scene;
     private OrderService orderService;
     private Order order;
+
     TableView<OrderItem> ordersTableView = new TableView<>();
-    Button btnAddArticle = new Button("Add Guitar");
+    Button btnAddArticle = new Button("Add Guitar ***");
     Button btnDelete = new Button("Delete");
     Button btnConfirm = new Button("Confirm");
     Button btnReset = new Button("Reset");
@@ -47,7 +50,7 @@ public class OrdersScene {
     public OrdersScene() {
         orderService = new OrderService();
         order= new Order();
-        order.setOrderID(orderService.getOrderId());
+        order.setOrderID(orderService.getLastOrderId());
         //*********************** new Method
         HBox hBoxBtns = new HBox();
         hBoxBtns.getChildren().addAll(btnAddArticle, btnDelete, btnConfirm, btnReset, btnSearch);
@@ -94,7 +97,7 @@ public class OrdersScene {
         btnAddArticle.setOnAction(
                 a -> {
                     GuitarDialog guitarDialog = new GuitarDialog(order.getOrderItems());
-                    guitarDialog.getGuitarStage().showAndWait();
+                    guitarDialog.getGuitarStage().show();
                     if (order.getOrderItems().size() != 0) // make sure the window was not closed or canceled
                     {
                         this.ordersTableView.getItems().clear(); // to make sure every time there is a clear list of order items
@@ -135,7 +138,6 @@ public class OrdersScene {
         btnConfirm.setOnAction(
                 d -> {
                     if (order.getCustomer() != null && order.getOrderItems().size() != 0) {
-
                         ConfirmOrderDialog confirmationWindow = new ConfirmOrderDialog(order);
                         confirmationWindow.getStage().showAndWait();
                         if (confirmationWindow.isConfirmed()) {

@@ -15,7 +15,7 @@ public class OrderService {
     {
         return orderDAO.getAllOrders();
     }
-    public int getOrderId()
+    public int getLastOrderId()
     {
         return orderDAO.getLastOrderId() + 21;
     }

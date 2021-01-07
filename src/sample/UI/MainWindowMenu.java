@@ -15,11 +15,9 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.DAO.DataBase;
+import sample.Model.Order;
 import sample.Model.User;
-import sample.UI.scenes.GuitarListScene;
-import sample.UI.scenes.OrdersScene;
-import sample.UI.scenes.StockScene;
-import sample.UI.scenes.WelcomeScene;
+import sample.UI.scenes.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -90,10 +88,9 @@ public class MainWindowMenu {
 
         WelcomeScene sl = new WelcomeScene();
         layout.getChildren().addAll(sl.getScene().getRoot());
-        // let us go
         stage.setScene(new Scene(layout, 990, 770));
         stage.show();
-
+        // let us go
     }
     public Stage getStage() {
         return stage;

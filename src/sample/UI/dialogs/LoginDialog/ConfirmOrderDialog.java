@@ -31,13 +31,8 @@ public class ConfirmOrderDialog {
     public ConfirmOrderDialog(Order order) {
         this.order = order;
         this.stage = new Stage();
-        this.stage.setResizable(false);
-        stage.initModality(Modality.APPLICATION_MODAL);
         this.orderService = new OrderService();
-        makeConfirmationScene();
-    }
 
-    private void makeConfirmationScene() {
         Label lblCustomer = new Label("Customer:");
 
         Label lblCustomerDetails = new Label();
@@ -53,9 +48,9 @@ public class ConfirmOrderDialog {
                 a -> {
                     if (order.getCustomer() != null && order.getOrderItems().size() != 0) {
                         order.setPurchaseDate(LocalDate.now());
-                            orderService.AddNewOrder(order);
-                            confirmed = true;
-                           stage.close();
+                        orderService.AddNewOrder(order);
+                        confirmed = true;
+                        stage.close();
                     }else
                         System.out.println("shity shity ");
                 });
@@ -64,6 +59,11 @@ public class ConfirmOrderDialog {
 
         vBox.getChildren().addAll(lblCustomer, lblCustomerDetails, gridPane, lblTotalPrice, btnConfirm);
         this.stage.setScene( new Scene(vBox, 900, 700));
+
+    }
+
+    private void makeConfirmationScene() {
+
     }
     private GridPane makeGridPaneLayout() {
 

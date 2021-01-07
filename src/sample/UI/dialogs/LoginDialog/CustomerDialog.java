@@ -77,7 +77,7 @@ public class CustomerDialog {
 
         TableColumn<Customer, String> colPhone = new TableColumn<>("Phone #");
         colPhone.setMinWidth(150);
-        colPhone.setCellValueFactory(new PropertyValueFactory<>("phoneNum"));
+        colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
 
         TableColumn<Customer, String> colEmail = new TableColumn<>("Email Address");
         colEmail.setMinWidth(160);

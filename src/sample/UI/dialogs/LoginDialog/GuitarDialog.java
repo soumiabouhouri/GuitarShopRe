@@ -11,15 +11,21 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.Model.Guitar;
 import sample.Model.OrderItem;
+import sample.UI.scenes.OrdersScene;
 import sample.logic.GuitarService;
+import sample.logic.OrderService;
 
 import java.util.List;
 
 public class GuitarDialog {
+    private OrdersScene  ordersScene;
+    private OrderService orderService;
+
+
     private GuitarService guitarService;
     private List<OrderItem> orderItems;
     private TextField txtQuantity = new TextField();
-    private Button btnAdd = new Button("Add");
+    private Button btnAdd = new Button("Add this");
     private Button btnConfirm = new Button("Confirm");
     private TableView<Guitar> GuitarTableView = new TableView<>();
     private Label lblArticles = new Label("Select an Article");
@@ -35,7 +41,9 @@ public class GuitarDialog {
     }
 
     public GuitarDialog(List<OrderItem> orderItems) {
+        ordersScene= new OrdersScene();
         guitarService = new GuitarService();
+        orderService= new OrderService();
         this.guitarStage = new Stage();
         this.guitarStage.setResizable(false);
 
@@ -126,7 +134,7 @@ public class GuitarDialog {
 
         btnConfirm.setOnAction(
                 a -> {
-                    if (orderItems.size() == 0) {}
+                    if (this.orderItems.size() != 0) { }
                     this.guitarStage.close();
                 });
     }
